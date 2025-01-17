@@ -64,6 +64,15 @@ flutter:
 
   assets:
     - assets/rectangle1.png
+    - assets/newss1.png
+    - assets/newss2.png
+    - assets/listnews1.png
+    - assets/listnews2.png
+    - assets/listnews3.png
+    - assets/Menu_Icon.png
+    - assets/arrow-redo-outline.png
+    - assets/bookmark-outline.png
+    - assets/chatbubble-ellipses-outline.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

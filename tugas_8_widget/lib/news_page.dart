@@ -9,23 +9,29 @@ class NewsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 32),
-          child: Icon(Icons.menu, color: Colors.black),
-        ),
+        toolbarHeight: 95,
         title: Padding(
-          padding: EdgeInsets.only(top: 40),
+          padding: const EdgeInsets.only(top: 40, left: 32), // Geser ke bawah
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start, // Menyebar rata
             children: [
-              Text(
-                'NewsApp',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/Menu_Icon.png', // Gambar ikon menu
+                    width: 40,
+                    height: 40,
+                  ),
+                  SizedBox(width: 59), // Jarak antara ikon dan teks
+                  Text(
+                    'NewsApp',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -36,14 +42,14 @@ class NewsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const EdgeInsets.only(top: 15, left: 32, bottom: 57),
               child: SizedBox(
-                height: 250,
+                height: 311,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
                     Container(
-                      width: 300,
+                      width: 311,
                       margin: EdgeInsets.only(right: 8),
                       child: Card(
                         shape: RoundedRectangleBorder(
@@ -53,7 +59,7 @@ class NewsPage extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              'assets/rectangle1.png',
+                              'assets/newss1.png',
                               height: 250,
                               width: double.infinity,
                               fit: BoxFit.cover,
@@ -65,7 +71,7 @@ class NewsPage extends StatelessWidget {
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
                                     colors: [
-                                      Colors.black.withOpacity(0.4),
+                                      Colors.black.withValues(alpha: 50),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -79,7 +85,7 @@ class NewsPage extends StatelessWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      Colors.black.withOpacity(0.1),
+                                      Colors.black.withValues(alpha: 450),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -93,15 +99,32 @@ class NewsPage extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'TECHNOLOGY',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'TECHNOLOGY',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        '3 mins ago',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(height: 5),
+                                  SizedBox(height: 131),
                                   Text(
                                     'Microsoft launches a deepfake detector tool ahead of US election',
                                     style: GoogleFonts.poppins(
@@ -109,6 +132,34 @@ class NewsPage extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: 24,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/chatbubble-ellipses-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 24,
+                                      ),
+                                      Image.asset(
+                                        'assets/bookmark-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 174,
+                                      ),
+                                      Image.asset(
+                                        'assets/arrow-redo-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -118,8 +169,8 @@ class NewsPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 300,
-                      margin: EdgeInsets.only(right: 16),
+                      width: 311,
+                      margin: EdgeInsets.only(right: 8),
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -128,7 +179,7 @@ class NewsPage extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              'assets/rectangle1.png',
+                              'assets/newss2.png',
                               height: 250,
                               width: double.infinity,
                               fit: BoxFit.cover,
@@ -140,7 +191,7 @@ class NewsPage extends StatelessWidget {
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
                                     colors: [
-                                      Colors.black.withOpacity(0.4),
+                                      Colors.black.withValues(alpha: 50),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -154,7 +205,7 @@ class NewsPage extends StatelessWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      Colors.black.withOpacity(0.1),
+                                      Colors.black.withValues(alpha: 450),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -168,22 +219,67 @@ class NewsPage extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'TECHNOLOGY',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white70,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'TECHNOLOGY',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        '3 mins ago',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(height: 8),
+                                  SizedBox(height: 131),
                                   Text(
-                                    'AI is transforming the future of healthcare',
+                                    'Microsoft launches a deepfake detector tool ahead of US election',
                                     style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: 24,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/chatbubble-ellipses-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 24,
+                                      ),
+                                      Image.asset(
+                                        'assets/bookmark-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        width: 174,
+                                      ),
+                                      Image.asset(
+                                        'assets/arrow-redo-outline.png', // Gambar ikon menu
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -197,13 +293,12 @@ class NewsPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
                 'Latest News',
                 style: GoogleFonts.arimo(
                   fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -217,33 +312,33 @@ class NewsPage extends StatelessWidget {
                     'category': 'TECHNOLOGY',
                     'title':
                         'Insurtech startup PasarPolis gets \$54 million — Series B',
-                    'image': 'assets/rectangle1.png',
+                    'image': 'assets/listnews1.png',
                   },
                   {
                     'category': 'TECHNOLOGY',
                     'title':
                         'The IPO parade continues as Wish files, Bumble targets',
-                    'image': 'assets/rectangle1.png',
+                    'image': 'assets/listnews2.png',
                   },
                   {
                     'category': 'TECHNOLOGY',
                     'title':
                         'Hypatos gets \$11.8M for a deep learning approach',
-                    'image': 'assets/rectangle1.png',
+                    'image': 'assets/listnews3.png',
                   },
                 ];
 
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 32,
-                    vertical: 24,
+                    vertical: 10,
                   ),
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
                       newsItems[index]['image']!,
-                      width: 60,
-                      height: 60,
+                      width: 100,
+                      height: 100,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -258,7 +353,7 @@ class NewsPage extends StatelessWidget {
                   subtitle: Text(
                     newsItems[index]['title']!,
                     style: GoogleFonts.poppins(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
