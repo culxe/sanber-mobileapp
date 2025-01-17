@@ -11,18 +11,18 @@ class NewsPage extends StatelessWidget {
         elevation: 0,
         toolbarHeight: 95,
         title: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 32), // Geser ke bawah
+          padding: const EdgeInsets.only(top: 40, left: 32),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start, // Menyebar rata
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Image.asset(
-                    'assets/Menu_Icon.png', // Gambar ikon menu
+                    'assets/Menu_Icon.png',
                     width: 40,
                     height: 40,
                   ),
-                  SizedBox(width: 59), // Jarak antara ikon dan teks
+                  SizedBox(width: 59),
                   Text(
                     'NewsApp',
                     style: GoogleFonts.poppins(
@@ -60,7 +60,6 @@ class NewsPage extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/newss1.png',
-                              height: 250,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
@@ -180,7 +179,6 @@ class NewsPage extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/newss2.png',
-                              height: 250,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
@@ -267,7 +265,7 @@ class NewsPage extends StatelessWidget {
                                         width: 24,
                                       ),
                                       Image.asset(
-                                        'assets/bookmark-outline.png', // Gambar ikon menu
+                                        'assets/bookmark-outline.png',
                                         width: 24,
                                         height: 24,
                                       ),
@@ -275,7 +273,7 @@ class NewsPage extends StatelessWidget {
                                         width: 174,
                                       ),
                                       Image.asset(
-                                        'assets/arrow-redo-outline.png', // Gambar ikon menu
+                                        'assets/arrow-redo-outline.png',
                                         width: 24,
                                         height: 24,
                                       ),

@@ -73,6 +73,9 @@ flutter:
     - assets/arrow-redo-outline.png
     - assets/bookmark-outline.png
     - assets/chatbubble-ellipses-outline.png
+    - assets/detailimage_BgImage.png
+    - assets/Avatar.png
+    - assets/Back_Icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
