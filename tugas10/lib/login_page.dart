@@ -33,7 +33,7 @@ class GetStartedPage extends StatelessWidget {
                 height: 21,
               ),
               Text(
-                'BeritaTerpercaya, Di Ujung JariAnda',
+                'Berita Terpercaya, Di Ujung Jari Anda',
                 style: TextStyle(fontSize: 15),
               ),
               Spacer(),
@@ -84,6 +84,9 @@ class GetStartedPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
                 ),
+              ),
+              SizedBox(
+                height: 92,
               ),
             ],
           ),
