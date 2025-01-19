@@ -10,13 +10,16 @@ class DetailnewsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/Back_Icon.png',
-            width: 24,
-            height: 24,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 0),
+          child: IconButton(
+            icon: Image.asset(
+              'assets/Back_Icon.png',
+              width: 24,
+              height: 24,
+            ),
+            onPressed: () {},
           ),
-          onPressed: () {},
         ),
       ),
       body: SingleChildScrollView(
@@ -30,6 +33,7 @@ class DetailnewsPage extends StatelessWidget {
                 child: Image.asset(
                   'assets/detailimage_BgImage.png',
                   fit: BoxFit.cover,
+                  height: 375,
                 ),
               ),
               SizedBox(height: 16),
