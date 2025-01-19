@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset(
-                      'assets/menu_icon.png',
+                      'assets/Menu_Icon.png',
                       width: 40,
                       height: 40,
                     ),
@@ -46,8 +45,11 @@ class MyApp extends StatelessWidget {
                   children: [
                     Text(
                       'Settings',
-                      style: GoogleFonts.poppins(
-                          fontSize: 36, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        fontFamily: 'Telegraf',
+                        fontSize: 36,
+                        fontWeight: FontWeight.w900,
+                      ),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -72,11 +74,19 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'Profile Settings',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'Settings regarding your profile',
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
@@ -103,11 +113,19 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'News settings',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'Choose your favourite topics',
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
@@ -134,11 +152,19 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'Notifications',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'When would you like to be notified',
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
@@ -165,11 +191,19 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'Subscriptions',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'Currently, you are in Starter Plan',
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
@@ -184,8 +218,11 @@ class MyApp extends StatelessWidget {
                       const SizedBox(height: 24),
                       Text(
                         'Other',
-                        style: GoogleFonts.poppins(
-                            fontSize: 36, fontWeight: FontWeight.w400),
+                        style: TextStyle(
+                          fontFamily: 'Telegraf',
+                          fontSize: 36,
+                          fontWeight: FontWeight.w400,
+                        ),
                         textAlign: TextAlign.left,
                       ),
                       const SizedBox(height: 24),
@@ -203,11 +240,19 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'Bug report',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'Report bugs very easy',
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
@@ -234,13 +279,21 @@ class MyApp extends StatelessWidget {
                             children: [
                               Text(
                                 'Share the app',
-                                style: GoogleFonts.poppins(fontSize: 20),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               Text(
                                 'Share on social media network',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.poppins(fontSize: 12),
+                                style: TextStyle(
+                                  fontFamily: 'Telegraf',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ],
                           ),
