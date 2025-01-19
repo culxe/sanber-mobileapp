@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
             child: Column(
               children: [
-                // Row untuk ikon menu dan search
                 Row(
                   children: [
                     InkWell(
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
                         height: 40,
                       ),
                     ),
-                    const Spacer(), // Menggunakan Spacer agar otomatis memberi jarak
+                    const Spacer(),
                     InkWell(
                       onTap: () {},
                       child: Image.asset(
@@ -46,7 +45,6 @@ class MyApp extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                // Row untuk teks Settings
                 Row(
                   children: [
                     Text(
@@ -61,18 +59,16 @@ class MyApp extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
-                // Expanded untuk ListView agar tetap fleksibel
                 Expanded(
                   child: ListView(
                     children: [
-                      // Contoh baris pertama di ListView
                       InkWell(
                         onTap: () {},
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_Profile.png', // Ikon dari assets
-                              width: 56, // Lebar ikon
+                              'assets/Icon_Profile.png',
+                              width: 56,
                               height: 56,
                             ),
                             const SizedBox(width: 16),
@@ -100,8 +96,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
@@ -113,7 +109,7 @@ class MyApp extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_News.png', // Ikon dari assets
+                              'assets/Icon_News.png',
                               width: 56,
                               height: 56,
                             ),
@@ -142,8 +138,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
@@ -155,8 +151,8 @@ class MyApp extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_Notif.png', // Ikon dari assets
-                              width: 56, // Lebar ikon
+                              'assets/Icon_Notif.png',
+                              width: 56,
                               height: 56,
                             ),
                             const SizedBox(width: 16),
@@ -184,8 +180,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
@@ -197,7 +193,7 @@ class MyApp extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_Subs.png', // Ikon dari assets
+                              'assets/Icon_Subs.png',
                               width: 56,
                               height: 56,
                             ),
@@ -226,8 +222,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
@@ -249,7 +245,7 @@ class MyApp extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_Bugs.png', // Ikon dari assets
+                              'assets/Icon_Bugs.png',
                               width: 56,
                               height: 56,
                             ),
@@ -278,8 +274,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
@@ -291,7 +287,7 @@ class MyApp extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/Icon_Share.png', // Ikon dari assets
+                              'assets/Icon_Share.png',
                               width: 56,
                               height: 56,
                             ),
@@ -322,8 +318,8 @@ class MyApp extends StatelessWidget {
                             ),
                             const Spacer(),
                             Image.asset(
-                              'assets/arrow-forward-circle-outline.png', // Ikon dari assets
-                              width: 16, // Lebar ikon
+                              'assets/arrow-forward-circle-outline.png',
+                              width: 16,
                               height: 16,
                             ),
                           ],
