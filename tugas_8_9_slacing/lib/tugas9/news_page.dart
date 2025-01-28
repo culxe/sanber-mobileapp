@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas10/const/app_style.dart';
-import 'package:tugas10/const/color.dart';
+import 'package:tugas_8_9_slacing/const/app_style.dart';
+import 'package:tugas_8_9_slacing/const/color.dart';
 
 class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
@@ -197,7 +197,7 @@ class NewsPage extends StatelessWidget {
                                 Row(
                                   children: [
                                     Image.asset(
-                                      'assets/chatbubble-ellipses-outline.png', // Gambar ikon menu
+                                      'assets/chatbubble-ellipses-outline.png',
                                       width: 24,
                                       height: 24,
                                     ),

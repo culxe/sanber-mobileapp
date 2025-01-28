@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tugas10/main.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -8,13 +7,14 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 86),
+                margin: EdgeInsets.only(top: 51),
                 width: double.infinity,
                 height: 330,
                 decoration: BoxDecoration(
@@ -22,6 +22,9 @@ class GetStartedPage extends StatelessWidget {
                     image: AssetImage('assets/rectangle1.png'),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 51,
               ),
               Text(
                 'Yuk, Membaca Bersama\nSanber News',
@@ -34,19 +37,18 @@ class GetStartedPage extends StatelessWidget {
               ),
               Text(
                 'Berita Terpercaya, Di Ujung Jari Anda',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.roboto(
+                  fontSize: 15,
+                ),
               ),
-              Spacer(),
+              SizedBox(
+                height: 51,
+              ),
               SizedBox(
                 height: 52,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                          builder: (context) => BottomNavBar(initialIndex: 0)),
-                    );
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff3498DB),
                     shape: RoundedRectangleBorder(
@@ -64,7 +66,7 @@ class GetStartedPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 21,
+                height: 51,
               ),
               SizedBox(
                 height: 52,

@@ -5,6 +5,7 @@ import 'package:tugas10/news_page.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
 
 class BottomNavBar extends StatefulWidget {
   final int initialIndex;
-  BottomNavBar({this.initialIndex = 0});
+  const BottomNavBar({this.initialIndex = 0});
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
@@ -69,6 +70,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 }
 
 class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -78,6 +80,7 @@ class SearchPage extends StatelessWidget {
 }
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Center(
