@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tugas_13/controller/user_controller.dart';
-import 'package:tugas_13/user/model/user_model.dart';
 import 'package:tugas_13/user/page/user_detail_page.dart';
-import 'package:tugas_13/user/service/user_service.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({super.key});
