@@ -25,14 +25,26 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<String?> register(String email, String password) async {
     try {
+      if (password.length < 6) {
+        return "Password harus memiliki minimal 6 karakter.";
+      }
+
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       isAuthenticated.value = true;
       Get.offAll(() => BottomNavBar());
+      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        return "Email sudah digunakan. Silakan gunakan email lain.";
+      } else if (e.code == 'weak-password') {
+        return "Password terlalu lemah. Gunakan kombinasi huruf dan angka.";
+      }
+      return "Registrasi gagal: ${e.message}";
     } catch (e) {
-      // Get.snackbar('Registration Failed', e.toString());
+      return "Terjadi kesalahan: ${e.toString()}";
     }
   }
 

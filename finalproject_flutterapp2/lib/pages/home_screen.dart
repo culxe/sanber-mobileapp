@@ -6,7 +6,6 @@ import 'package:finalproject_flutterapp2/data/newsdata.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  // final HomescreenController splashController = Get.put(HomescreenController());
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -176,9 +175,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {
-                              // HomescreenController.detailpage();
-                            },
+                            onPressed: () {},
                             child: Text(
                               "Lihat semua",
                               style: latoRegular.copyWith(
