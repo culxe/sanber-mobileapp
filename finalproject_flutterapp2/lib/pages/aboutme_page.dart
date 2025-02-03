@@ -126,7 +126,8 @@ class AboutmePage extends StatelessWidget {
                                 width: 30,
                               ),
                               onPressed: () {
-                                launchUrl(Uri.parse("https://flutter.dev"));
+                                launchUrl(Uri.parse(
+                                    "https://gitlab.com/sanberprojects/bootcampflutter"));
                               },
                             ),
                             Text(
@@ -147,10 +148,13 @@ class AboutmePage extends StatelessWidget {
                                 'assets/icon/aboutme_pythonpng.png',
                                 width: 35,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                launchUrl(Uri.parse(
+                                    "https://github.com/culxe/personreid-swintransformer"));
+                              },
                             ),
                             Text(
-                              'Flutter',
+                              'Python',
                               style: poppinsBold.copyWith(
                                 color: greyColor,
                                 fontSize: 12,
@@ -165,12 +169,15 @@ class AboutmePage extends StatelessWidget {
                             IconButton(
                               icon: Image.asset(
                                 'assets/icon/aboutme_kotlin.png',
-                                width: 30,
+                                width: 40,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                launchUrl(Uri.parse(
+                                    "https://github.com/culxe/chatbotai-gemini"));
+                              },
                             ),
                             Text(
-                              'Flutter',
+                              'React',
                               style: poppinsBold.copyWith(
                                 color: greyColor,
                                 fontSize: 12,
@@ -232,7 +239,8 @@ class AboutmePage extends StatelessWidget {
                                 width: 30,
                               ),
                               onPressed: () {
-                                launchUrl(Uri.parse("https://flutter.dev"));
+                                launchUrl(Uri.parse(
+                                    "https://www.linkedin.com/in/indiana-namaul/"));
                               },
                             ),
                             Text(
@@ -253,7 +261,9 @@ class AboutmePage extends StatelessWidget {
                                 'assets/icon/aboutme_telegram.png',
                                 width: 30,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                launchUrl(Uri.parse("https://t.me/ylkzylkz"));
+                              },
                             ),
                             Text(
                               'Telegram',
@@ -273,7 +283,10 @@ class AboutmePage extends StatelessWidget {
                                 'assets/icon/aboutme_email.png',
                                 width: 30,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                launchUrl(
+                                    Uri.parse("mailto:indinamaull@gmail.com"));
+                              },
                             ),
                             Text(
                               'Email',

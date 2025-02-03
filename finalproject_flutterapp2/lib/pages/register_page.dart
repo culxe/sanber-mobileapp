@@ -2,7 +2,6 @@
 import 'package:finalproject_flutterapp2/const/app_style.dart';
 import 'package:finalproject_flutterapp2/const/color.dart';
 import 'package:finalproject_flutterapp2/controllers/auth_controller.dart';
-import 'package:finalproject_flutterapp2/pages/home_screen.dart';
 import 'package:finalproject_flutterapp2/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,7 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  bool _obsecureText = true;
+  final _obsecureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +20,7 @@ class RegisterPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30,
+            height: 40,
           ),
           Center(
             child: Image.asset(
@@ -142,17 +141,33 @@ class RegisterPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 24,
-                  ),
-                  child: Text(
-                    'Belum punya akun?',
-                    style: poppinsRegular.copyWith(
-                      fontSize: 12,
-                      color: greyColor,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 24,
+                      ),
+                      child: Text(
+                        'Sudah punya akun?',
+                        style: poppinsRegular.copyWith(
+                          fontSize: 12,
+                          color: greyColor,
+                        ),
+                      ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () {
+                        Get.toNamed('/login-page');
+                      },
+                      child: Text(
+                        "Login",
+                        style: poppinsRegular.copyWith(
+                          fontSize: 12,
+                          color: orangeColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Align(
@@ -163,7 +178,7 @@ class RegisterPage extends StatelessWidget {
                     'Lupa Password?',
                     style: poppinsRegular.copyWith(
                       fontSize: 12,
-                      color: greyColor,
+                      color: orangeColor,
                     ),
                   ),
                 ),

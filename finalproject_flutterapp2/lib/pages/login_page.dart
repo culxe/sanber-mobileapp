@@ -1,9 +1,7 @@
 import 'package:finalproject_flutterapp2/const/app_style.dart';
 import 'package:finalproject_flutterapp2/const/color.dart';
 import 'package:finalproject_flutterapp2/controllers/auth_controller.dart';
-import 'package:finalproject_flutterapp2/pages/home_screen.dart';
 import 'package:finalproject_flutterapp2/widgets/bottom_navbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +20,7 @@ class LoginPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30,
+            height: 40,
           ),
           Center(
             child: Image.asset(
@@ -116,24 +114,34 @@ class LoginPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 24,
-                  ),
-                  child: Text(
-                    'Belum punya akun?',
-                    style: poppinsRegular.copyWith(
-                      fontSize: 12,
-                      color: greyColor,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 24,
+                      ),
+                      child: Text(
+                        'Belum punya akun?',
+                        style: poppinsRegular.copyWith(
+                          fontSize: 12,
+                          color: greyColor,
+                        ),
+                      ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () {
+                        Get.toNamed('/register-page');
+                      },
+                      child: Text(
+                        "Daftar",
+                        style: poppinsRegular.copyWith(
+                          fontSize: 12,
+                          color: orangeColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed('/register-page');
-                },
-                child: Text("Daftar"),
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -143,7 +151,7 @@ class LoginPage extends StatelessWidget {
                     'Lupa Password?',
                     style: poppinsRegular.copyWith(
                       fontSize: 12,
-                      color: greyColor,
+                      color: orangeColor,
                     ),
                   ),
                 ),
@@ -168,7 +176,7 @@ class LoginPage extends StatelessWidget {
                       context: context,
                       builder: (_) => AlertDialog(
                         title: Text("Login Gagal"),
-                        content: Text("Username atau password salah"),
+                        content: Text("Email atau password salah"),
                         actions: [
                           TextButton(
                             onPressed: () => Get.back(),

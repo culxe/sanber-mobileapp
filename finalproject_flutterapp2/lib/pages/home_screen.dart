@@ -6,6 +6,7 @@ import 'package:finalproject_flutterapp2/data/newsdata.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  // final HomescreenController splashController = Get.put(HomescreenController());
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -76,9 +77,7 @@ class HomeScreen extends StatelessWidget {
                                   icon: Image.asset(
                                     iconsRow1[index],
                                   ),
-                                  onPressed: () {
-                                    print("${namesRow1[index]} ditekan");
-                                  },
+                                  onPressed: () {},
                                 ),
                                 Text(
                                   namesRow1[index],
@@ -104,9 +103,7 @@ class HomeScreen extends StatelessWidget {
                                   icon: Image.asset(
                                     iconsRow2[index],
                                   ),
-                                  onPressed: () {
-                                    print("${namesRow2[index]} ditekan");
-                                  },
+                                  onPressed: () {},
                                 ),
                                 Text(
                                   namesRow2[index],
@@ -150,7 +147,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Container(
-                width: 340,
+                width: 360,
                 height: 182,
                 decoration: BoxDecoration(
                   color: whiteColor,
@@ -179,7 +176,9 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // HomescreenController.detailpage();
+                            },
                             child: Text(
                               "Lihat semua",
                               style: latoRegular.copyWith(
@@ -196,13 +195,15 @@ class HomeScreen extends StatelessWidget {
                           itemCount: newsData.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(left: 16),
+                              padding:
+                                  const EdgeInsets.only(left: 16, bottom: 10),
                               child: Container(
                                 width: 180,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
                                       child: Image.asset(
                                         'assets/image/homescreen_berita_image1.png',
                                         width: 50,
@@ -220,6 +221,14 @@ class HomeScreen extends StatelessWidget {
                                                   '${newsData[index]['title']} \n',
                                               style: latoBold.copyWith(
                                                 fontSize: 16,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '${newsData[index]['title']} \n',
+                                              style: latoBold.copyWith(
+                                                fontSize: 5,
+                                                color: whiteColor,
                                               ),
                                             ),
                                             TextSpan(

@@ -1,14 +1,9 @@
-import 'package:finalproject_flutterapp2/firebase_options.dart';
 import 'package:finalproject_flutterapp2/pages/get_started.dart';
-import 'package:finalproject_flutterapp2/routes/app_routes.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject_flutterapp2/widgets/bottom_navbar.dart';
 import 'package:get/get.dart';
 import 'package:finalproject_flutterapp2/controllers/auth_controller.dart';
 import 'package:finalproject_flutterapp2/pages/login_page.dart';
-import 'package:finalproject_flutterapp2/pages/register_page.dart';
-import 'package:finalproject_flutterapp2/pages/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthChecker extends StatefulWidget {
