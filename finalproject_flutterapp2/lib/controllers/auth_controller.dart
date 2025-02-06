@@ -1,7 +1,5 @@
-import 'package:finalproject_flutterapp2/pages/get_started.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:finalproject_flutterapp2/widgets/bottom_navbar.dart';
 
 class AuthController extends GetxController {
   var isAuthenticated = false.obs;
@@ -19,7 +17,7 @@ class AuthController extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       isAuthenticated.value = true;
-      Get.offAll(() => BottomNavBar());
+      Get.offAll('/home-screen');
     } catch (e) {
       // Get.snackbar('Login Failed', e.toString());
     }
@@ -34,7 +32,7 @@ class AuthController extends GetxController {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       isAuthenticated.value = true;
-      Get.offAll(() => BottomNavBar());
+      Get.offAllNamed('/home-screen');
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -51,6 +49,6 @@ class AuthController extends GetxController {
   Future<void> logout() async {
     await _auth.signOut();
     isAuthenticated.value = false;
-    Get.offAll(() => GetStarted());
+    Get.offAllNamed('/getStarted');
   }
 }

@@ -1,6 +1,5 @@
 import 'package:finalproject_flutterapp2/const/app_style.dart';
 import 'package:finalproject_flutterapp2/const/color.dart';
-import 'package:finalproject_flutterapp2/routes/app_routes_named.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,7 @@ class GetStarted extends StatelessWidget {
             SizedBox(height: 93),
             ElevatedButton(
               onPressed: () {
-                Get.toNamed(AppRoutesNamed.registerPage);
+                Get.toNamed('/register-page');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: blueColor,
@@ -49,7 +48,7 @@ class GetStarted extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Get.toNamed(AppRoutesNamed.loginPage);
+                Get.toNamed('/login-page');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: darkblueColor,

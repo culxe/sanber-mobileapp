@@ -1,7 +1,6 @@
 import 'package:finalproject_flutterapp2/const/app_style.dart';
 import 'package:finalproject_flutterapp2/const/color.dart';
 import 'package:finalproject_flutterapp2/controllers/auth_controller.dart';
-import 'package:finalproject_flutterapp2/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -175,7 +174,7 @@ class LoginPage extends StatelessWidget {
                         _passwordController.text,
                       );
                       if (authController.isAuthenticated.value) {
-                        Get.offAll(BottomNavBar());
+                        Get.offAllNamed('/home-screen');
                       } else {
                         showDialog(
                           context: context,
