@@ -9,8 +9,8 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
-  final RxBool _obsecureText = true.obs;
+  final FocusNode focusNode = FocusNode();
+  final RxBool obsecureText = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RegisterPage extends StatelessWidget {
                 buildTextField('Username', usernameController),
                 buildTextField('Email', emailController),
                 buildPasswordField(),
-                SizedBox(height: 10),
+                SizedBox(height: 1),
                 buildLoginOption(),
                 SizedBox(height: 20),
                 buildRegisterButton(),
@@ -87,67 +87,131 @@ class RegisterPage extends StatelessWidget {
           style: poppinsRegular.copyWith(fontSize: 16, color: greyColor),
         ),
         SizedBox(height: 4),
-        Obx(() => TextFormField(
-              controller: passwordController,
-              focusNode: _focusNode,
-              obscureText: _obsecureText.value,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                suffixIcon: IconButton(
-                  icon: Icon(_obsecureText.value
-                      ? Icons.visibility_off
-                      : Icons.visibility),
-                  onPressed: () => _obsecureText.value = !_obsecureText.value,
-                ),
+        Obx(
+          () => TextFormField(
+            controller: passwordController,
+            focusNode: focusNode,
+            obscureText: obsecureText.value,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
-            )),
+              suffixIcon: IconButton(
+                icon: Icon(obsecureText.value
+                    ? Icons.visibility_off
+                    : Icons.visibility),
+                onPressed: () => obsecureText.value = !obsecureText.value,
+              ),
+            ),
+          ),
+        ),
         SizedBox(height: 8),
       ],
     );
   }
 
   Widget buildRegisterButton() {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 43),
-      child: ElevatedButton(
-        onPressed: () async {
-          String email = emailController.text.trim();
-          String password = passwordController.text.trim();
-          String? errorMessage = await authController.register(email, password);
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: 20),
+          child: ElevatedButton(
+            onPressed: () async {
+              String email = emailController.text.trim();
+              String password = passwordController.text.trim();
+              String? errorMessage =
+                  await authController.register(email, password);
 
-          if (errorMessage != null) {
-            showDialog(
-              context: Get.context!,
-              builder: (_) => AlertDialog(
-                title: Text("Registrasi Gagal"),
-                content: Text(errorMessage),
-                actions: [
-                  TextButton(
-                    onPressed: () => Get.back(),
-                    child: Text("OK"),
+              if (errorMessage != null) {
+                showDialog(
+                  context: Get.context!,
+                  builder: (_) => AlertDialog(
+                    title: Text("Registrasi Gagal"),
+                    content: Text(errorMessage),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Get.back(),
+                        child: Text("OK"),
+                      ),
+                    ],
                   ),
-                ],
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: darkblueColor,
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 125),
+            ),
+            child: Text(
+              'Daftar',
+              style: poppinsMedium.copyWith(color: whiteColor, fontSize: 18),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Divider(thickness: 0.5, indent: 30, endIndent: 30, color: greyColor),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            'Atau daftar menggunakan',
+            style: TextStyle(color: greyColor),
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Material(
+            color: Colors.white,
+            child: SizedBox(
+              height: 52,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  surfaceTintColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.red),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  backgroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  final authController = Get.find<AuthController>();
+                  authController.loginWithGoogle();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 33,
+                      height: 33,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/icon/icon_google.png'),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Daftar menggunakan Google',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    SizedBox(),
+                  ],
+                ),
               ),
-            );
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: darkblueColor,
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 125),
+            ),
+          ),
         ),
-        child: Text(
-          'Daftar',
-          style: poppinsMedium.copyWith(color: whiteColor, fontSize: 18),
-        ),
-      ),
+      ],
     );
   }
 
   Widget buildLoginOption() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
           children: [

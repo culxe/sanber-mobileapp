@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       getPages: AppRoutes.routes,
-      initialRoute: '/',
+      initialRoute: '/home-screen',
       title: 'Final Project Flutter App',
     );
   }
