@@ -87,19 +87,43 @@ class AuthController extends GetxController {
 
   Future<UserCredential?> loginWithGoogle() async {
     try {
+      print("Memulai Google Sign-In...");
+
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
+        print("Login dibatalkan oleh pengguna.");
         return null;
       }
 
+      print("Google Sign-In berhasil. Email: ${googleUser.email}");
+
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
+
+      print("Google Authentication berhasil didapatkan.");
+      print("Access Token: ${googleAuth.accessToken}");
+      print("ID Token: ${googleAuth.idToken}");
+
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+      print("Mencoba login ke Firebase dengan credential Google...");
+
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      print("Login Firebase berhasil!");
+      print("User ID: ${userCredential.user?.uid}");
+      print("Display Name: ${userCredential.user?.displayName}");
+      print("Email: ${userCredential.user?.email}");
+      print("Photo URL: ${userCredential.user?.photoURL}");
+
+      Get.snackbar('Berhasil masuk', 'Selamat datang!');
+      Get.offAllNamed('/home-screen');
+
+      return userCredential;
     } catch (e) {
       print("Error saat login dengan Google: ${e.toString()}");
       return null;
@@ -108,9 +132,9 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     await _auth.signOut();
-    // if (await googleSignIn.isSignedIn()) {
-    //   await googleSignIn.signOut();
-    // }
+    if (await googleSignIn.isSignedIn()) {
+      await googleSignIn.signOut();
+    }
     isAuthenticated.value = false;
     Get.offAllNamed('/');
   }
