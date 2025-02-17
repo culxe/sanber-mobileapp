@@ -21,36 +21,40 @@ class RegisterPage extends StatelessWidget {
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           physics: BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 40),
-                Center(
-                  child: Image.asset(
-                    'assets/icon/app_main_icon.png',
-                    height: 57,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 40),
+                  Center(
+                    child: Image.asset(
+                      'assets/icon/app_main_icon.png',
+                      height: 57,
+                    ),
                   ),
-                ),
-                SizedBox(height: 13),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Selamat Datang\nSilahkan Mendaftar',
-                    style: poppinsMedium.copyWith(fontSize: 20),
+                  SizedBox(height: 13),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Selamat Datang\nSilahkan Mendaftar',
+                      style: poppinsMedium.copyWith(fontSize: 20),
+                    ),
                   ),
-                ),
-                SizedBox(height: 50),
-                buildTextField('Username', usernameController),
-                buildTextField('Email', emailController),
-                buildPasswordField(),
-                SizedBox(height: 1),
-                buildLoginOption(),
-                SizedBox(height: 20),
-                buildRegisterButton(),
-              ],
+                  SizedBox(height: 50),
+                  buildTextField('Username', usernameController),
+                  buildTextField('Email', emailController),
+                  buildPasswordField(),
+                  SizedBox(height: 1),
+                  buildLoginOption(),
+                  SizedBox(height: 20),
+                  buildRegisterButton(),
+                ],
+              ),
             ),
           ),
         ),
@@ -182,24 +186,26 @@ class RegisterPage extends StatelessWidget {
                   final authController = Get.find<AuthController>();
                   authController.loginWithGoogle();
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 33,
-                      height: 33,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/icon/icon_google.png'),
+                child: FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 33,
+                        height: 33,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/icon/icon_google.png'),
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      'Daftar menggunakan Google',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                    SizedBox(),
-                  ],
+                      Text(
+                        ' Daftar menggunakan Google',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      SizedBox(),
+                    ],
+                  ),
                 ),
               ),
             ),

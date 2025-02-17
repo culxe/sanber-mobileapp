@@ -20,53 +20,61 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              Center(
-                child: Image.asset(
-                  'assets/icon/app_main_icon.png',
-                  height: 57,
-                ),
-              ),
-              SizedBox(
-                height: 13,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: Text(
-                    'Selamat Datang\nKembali',
-                    style: poppinsMedium.copyWith(
-                      fontSize: 20,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Center(
+                    child: Image.asset(
+                      'assets/icon/app_main_icon.png',
+                      height: 57,
                     ),
                   ),
-                ),
+                  SizedBox(
+                    height: 13,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text(
+                        'Selamat Datang\nKembali',
+                        style: poppinsMedium.copyWith(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  buildTextField('Email', emailController),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  buildPasswordField(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildLoginOption(),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  buildLoginButton(),
+                ],
               ),
-              SizedBox(
-                height: 50,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              buildTextField('Email', emailController),
-              SizedBox(
-                height: 24,
-              ),
-              buildPasswordField(),
-              SizedBox(
-                height: 10,
-              ),
-              buildLoginOption(),
-              SizedBox(
-                height: 24,
-              ),
-              buildLoginButton(),
-            ],
+            ),
           ),
         ),
       ),
@@ -150,57 +158,59 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget buildLoginOption() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 24,
-                ),
-                child: Text(
-                  'Belum punya akun?',
-                  style: poppinsRegular.copyWith(
-                    fontSize: 12,
-                    color: greyColor,
+    return FittedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 24,
+                  ),
+                  child: Text(
+                    'Belum punya akun?',
+                    style: poppinsRegular.copyWith(
+                      fontSize: 12,
+                      color: greyColor,
+                    ),
                   ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed('/register-page');
-                },
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed('/register-page');
+                  },
+                  child: Text(
+                    "Daftar",
+                    style: poppinsRegular.copyWith(
+                      fontSize: 12,
+                      color: orangeColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: TextButton(
+                onPressed: () {},
                 child: Text(
-                  "Daftar",
+                  'Lupa Password?',
                   style: poppinsRegular.copyWith(
                     fontSize: 12,
                     color: orangeColor,
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 24),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'Lupa Password?',
-                style: poppinsRegular.copyWith(
-                  fontSize: 12,
-                  color: orangeColor,
-                ),
-              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -285,24 +295,26 @@ class LoginPage extends StatelessWidget {
                     final authController = Get.find<AuthController>();
                     await authController.loginWithGoogle();
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 33,
-                        height: 33,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/icon/icon_google.png'),
+                  child: FittedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 33,
+                          height: 33,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/icon/icon_google.png'),
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        'Masuk menggunakan Google',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      SizedBox(),
-                    ],
+                        Text(
+                          ' Masuk menggunakan Google',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
               ),
