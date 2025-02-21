@@ -1,7 +1,8 @@
 # BootcampFlutter
 
 Assignments and Final Project from Sanbercode Bootcamp - Mobile App Dev Flutter.
-![final project flutter app](https://github.com/user-attachments/assets/fdd8794a-9ab0-4e74-aebb-af56654666df)
+![WhatsApp Video 2025-02-21 at 18 02 25_71e8e709](https://github.com/user-attachments/assets/cde1a714-da12-410b-a090-88cf8ff12956)
+
 
 ## Getting started
 
