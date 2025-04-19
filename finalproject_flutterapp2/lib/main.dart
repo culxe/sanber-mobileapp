@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject_flutterapp2/firebase_options.dart';
 import 'package:finalproject_flutterapp2/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,10 +12,9 @@ void main() async {
   // FirebaseAuth.instance.setLanguageCode("id");
 
   await Firebase.initializeApp(
-    name: "finalproject_flutterapp2",
+    // name: "finalproject_flutterapp2",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   Get.put(AuthController());
   runApp(const MyApp());
 }
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.routes,
       initialRoute: '/',
       title: 'Final Project Flutter App',
+      debugShowCheckedModeBanner: false,
     );
   }
 }

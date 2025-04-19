@@ -4,28 +4,47 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   var isAuthenticated = false.obs;
+  Rxn<User> firebaseUser = Rxn<User>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-  GoogleSignIn googleSignIn = GoogleSignIn();
+  final String emailPattern =
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+  late final RegExp _emailRegex;
+
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   @override
   void onInit() {
     super.onInit();
+    _emailRegex = RegExp(emailPattern);
     _auth.authStateChanges().listen((User? user) {
       isAuthenticated.value = user != null;
     });
   }
 
-  Future<String?> login(String email, String password) async {
-    String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-    RegExp regex = RegExp(emailPattern);
+  var userEmail = ''.obs;
+  void setUserEmail(String email) {
+    userEmail.value = email;
+  }
 
+  String? _validateEmailAndPassword(String email, String password,
+      {bool isRegister = false}) {
     if (email.trim().isEmpty || password.trim().isEmpty) {
       return "Email dan password harus diisi!";
     }
-
-    if (!regex.hasMatch(email)) {
+    if (!_emailRegex.hasMatch(email)) {
       return "Format email tidak valid!";
+    }
+    if (isRegister && password.length < 6) {
+      return "Password harus memiliki minimal 6 karakter.";
+    }
+    return null;
+  }
+
+  Future<String?> login(String email, String password) async {
+    final validationError = _validateEmailAndPassword(email, password);
+    if (validationError != null) {
+      Get.log("❌ Login validation failed: $validationError");
+      return validationError;
     }
 
     try {
@@ -35,106 +54,139 @@ class AuthController extends GetxController {
       );
 
       if (userCredential.user != null) {
+        setUserEmail(email);
         isAuthenticated.value = true;
+        Get.log("✅ Berhasil login sebagai $email");
         Get.offAllNamed('/home-screen');
         return null;
       } else {
         isAuthenticated.value = false;
-        return 'Login Failed: User tidak ditemukan.';
+        Get.log("🚫 User tidak ditemukan");
+        return 'Login gagal: User tidak ditemukan.';
       }
     } on FirebaseAuthException catch (e) {
       isAuthenticated.value = false;
-      if (e.code == 'user-not-found') {
-        return 'Email tidak terdaftar.';
-      } else if (e.code == 'wrong-password') {
-        return 'Password salah.';
-      } else {
-        return e.message ?? 'Terjadi kesalahan.';
+      Get.log("🔥 FirebaseAuthException: ${e.code} - ${e.message}");
+
+      switch (e.code) {
+        case 'user-not-found':
+          return 'Email tidak terdaftar.';
+        case 'wrong-password':
+          return 'Password salah.';
+        case 'too-many-requests':
+          return 'Terlalu banyak percobaan. Coba lagi nanti.';
+        default:
+          return 'Error: Terjadi kesalahan (${e.code})';
       }
     } catch (e) {
       isAuthenticated.value = false;
+      Get.log("💥 Uncaught exception: ${e.toString()}");
       return 'Terjadi kesalahan: ${e.toString()}';
     }
   }
 
   Future<String?> register(String email, String password) async {
-    try {
-      RegExp regex = RegExp(emailPattern);
-      if (email.trim().isEmpty || password.trim().isEmpty) {
-        return "Email dan password harus diisi!";
-      } else if (!regex.hasMatch(email)) {
-        return "Format email tidak valid!";
-      } else if (password.length < 6) {
-        return "Password harus memiliki minimal 6 karakter.";
-      }
+    final validationError =
+        _validateEmailAndPassword(email, password, isRegister: true);
+    if (validationError != null) {
+      Get.log("❌ Register validation failed: $validationError");
+      return validationError;
+    }
 
+    try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      setUserEmail(email);
       isAuthenticated.value = true;
-      // Get.offAllNamed('/home-screen');
+      Get.log("✅ Berhasil register sebagai $email");
+      Get.offAllNamed('/home-screen');
       return null;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        return "Email sudah digunakan. Silakan gunakan email lain.";
-      } else if (e.code == 'weak-password') {
-        return "Password terlalu lemah. Gunakan kombinasi huruf dan angka.";
+      Get.log("🔥 FirebaseAuthException: ${e.code} - ${e.message}");
+
+      switch (e.code) {
+        case 'email-already-in-use':
+          return "Email sudah digunakan. Silakan gunakan email lain.";
+        case 'weak-password':
+          return "Password terlalu lemah. Gunakan kombinasi huruf dan angka.";
+        default:
+          return "Registrasi gagal: ${e.message}";
       }
-      return "Registrasi gagal: ${e.message}";
     } catch (e) {
+      Get.log("💥 Exception tidak diketahui: ${e.toString()}");
       return "Terjadi kesalahan: ${e.toString()}";
     }
   }
 
   Future<UserCredential?> loginWithGoogle() async {
     try {
-      print("Memulai Google Sign-In...");
+      Get.log("Memulai Google Sign-In...");
 
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
-        print("Login dibatalkan oleh pengguna.");
+        Get.log("Login dibatalkan oleh pengguna.");
         return null;
       }
 
-      print("Google Sign-In berhasil. Email: ${googleUser.email}");
+      Get.log("Google Sign-In berhasil. Email: ${googleUser.email}");
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      print("Google Authentication berhasil didapatkan.");
-      print("Access Token: ${googleAuth.accessToken}");
-      print("ID Token: ${googleAuth.idToken}");
+      Get.log("Google Authentication berhasil didapatkan.");
+      Get.log("Access Token: ${googleAuth.accessToken}");
+      Get.log("ID Token: ${googleAuth.idToken}");
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      print("Mencoba login ke Firebase dengan credential Google...");
+      Get.log("Mencoba login ke Firebase dengan credential Google...");
 
       final UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+          await _auth.signInWithCredential(credential);
 
-      print("Login Firebase berhasil!");
-      print("User ID: ${userCredential.user?.uid}");
-      print("Display Name: ${userCredential.user?.displayName}");
-      print("Email: ${userCredential.user?.email}");
-      print("Photo URL: ${userCredential.user?.photoURL}");
+      Get.log("Login Firebase berhasil!");
+      Get.log("User ID: ${userCredential.user?.uid}");
+      Get.log("Display Name: ${userCredential.user?.displayName}");
+      Get.log("Email: ${userCredential.user?.email}");
+      Get.log("Photo URL: ${userCredential.user?.photoURL}");
 
       Get.snackbar('Berhasil masuk', 'Selamat datang!');
       Get.offAllNamed('/home-screen');
 
       return userCredential;
     } catch (e) {
-      print("Error saat login dengan Google: ${e.toString()}");
+      Get.log("Error saat login dengan Google: ${e.toString()}");
       return null;
+    }
+  }
+
+  Future<void> checkLoginStatus() async {
+    User? user = _auth.currentUser;
+    await user?.reload();
+    user = _auth.currentUser;
+
+    if (user != null) {
+      firebaseUser.value = user;
+      isAuthenticated.value = true;
+      Get.log("✅ Logged in as: ${user.email}");
+      Get.offAllNamed('/home-screen');
+    } else {
+      isAuthenticated.value = false;
+      Get.log("🔒 Belum login");
+      Get.offAllNamed('/getStarted');
     }
   }
 
   Future<void> logout() async {
     await _auth.signOut();
+
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
+
     isAuthenticated.value = false;
     Get.offAllNamed('/');
   }

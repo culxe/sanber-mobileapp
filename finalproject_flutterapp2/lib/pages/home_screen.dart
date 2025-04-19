@@ -1,14 +1,17 @@
 import 'package:finalproject_flutterapp2/const/app_style.dart';
 import 'package:finalproject_flutterapp2/const/color.dart';
+import 'package:finalproject_flutterapp2/controllers/auth_controller.dart';
 import 'package:finalproject_flutterapp2/data/iconsrow.dart';
 import 'package:finalproject_flutterapp2/data/namesrow.dart';
 import 'package:finalproject_flutterapp2/data/newsdata.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: whiteColor,
       body: SingleChildScrollView(
@@ -38,11 +41,13 @@ class HomeScreen extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24),
-                      child: Text(
-                        'Hello *email*',
-                        style: poppinsMedium.copyWith(
-                          fontSize: 14,
-                        ),
+                      child: Obx(
+                        () {
+                          return Text(
+                            'Hello ${authController.firebaseUser.value?.email}!',
+                            style: poppinsMedium.copyWith(fontSize: 14),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -62,34 +67,61 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 13),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: List.generate(4, (index) {
-                          return SizedBox(
-                            width: 72,
-                            child: Column(
-                              children: [
-                                IconButton(
-                                  icon: Image.asset(
-                                    iconsRow1[index],
+                        children: List.generate(
+                          4,
+                          (index) {
+                            return SizedBox(
+                              width: 72,
+                              child: Column(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: SizedBox(
+                                      width: 56,
+                                      height: 56,
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          padding: EdgeInsets.all(11),
+                                          decoration: BoxDecoration(
+                                            color: whiteColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: lightgreyColor
+                                                    .withAlpha(60),
+                                                spreadRadius: 0.5,
+                                                blurRadius: 8,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
+                                          ),
+                                          child: Image.asset(iconsRow1[index]),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  onPressed: () {},
-                                ),
-                                Text(
-                                  namesRow1[index],
-                                  textAlign: TextAlign.center,
-                                  softWrap: true,
-                                  overflow: TextOverflow.visible,
-                                  maxLines: 2,
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
+                                  Text(
+                                    namesRow1[index],
+                                    textAlign: TextAlign.center,
+                                    softWrap: true,
+                                    overflow: TextOverflow.visible,
+                                    maxLines: 2,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -99,10 +131,34 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: Image.asset(
-                                    iconsRow2[index],
-                                  ),
                                   onPressed: () {},
+                                  icon: SizedBox(
+                                    width: 56,
+                                    height: 56,
+                                    child: FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        padding: EdgeInsets.all(11),
+                                        decoration: BoxDecoration(
+                                          color: whiteColor,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  lightgreyColor.withAlpha(60),
+                                              spreadRadius: 0.5,
+                                              blurRadius: 8,
+                                              offset: Offset(0, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Image.asset(iconsRow2[index]),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 Text(
                                   namesRow2[index],
@@ -144,10 +200,10 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Container(
                 width: 360,
-                height: 182,
+                height: 192,
                 decoration: BoxDecoration(
                   color: whiteColor,
                   borderRadius: BorderRadius.circular(6),
